@@ -15,27 +15,33 @@ public class Parachute {
     ParachuteSystem getParachuteSystem() throws IOException {     //  проверить на правильность ввода цифрой
         List<ParachuteSystem> parSys = getParachuteSystemsFromFile();
         if (parSys.isEmpty()){ creatorParachuteSystem.createParachuteSystem(); parSys = getParachuteSystemsFromFile();}
-        ParachuteSystem result = null;
+        ParachuteSystem result = null;//??????????????
         int numberChoice = Integer.parseInt(choiceParachuteSystemByUser(parSys));
         if (numberChoice == parSys.size() + 1) {creatorParachuteSystem.createParachuteSystem();
-        getParachuteSystem();}
-        else
-        for (int i = 1; i < (parSys.size() + 1); i++){
+        getParachuteSystem();//??????????????
+        }
+        else if (numberChoice == parSys.size() + 2) {new RemoverParachuteSystem(parSys).removeParachuteSystem();
+        getParachuteSystem();//????????????
+        }
+        for (int i = 1; i <= parSys.size(); i++){
              if (numberChoice == i) result = parSys.get(i - 1);
         }
-        return result;
+        System.out.println(parSys);//!!!!!!!!!!!!!!!!!!!!!!!!!!
+        System.out.println(numberChoice);//!!!!!!!!!!!!!!!!!!!!!!!!!!
+        return result; //parSys.get(numberChoice - 1);
     }
 
     String choiceParachuteSystemByUser(List<ParachuteSystem> parSys) throws IOException {
-        System.out.println(parSys);//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        //System.out.println(parSys);//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             for (int i = 1; i <= parSys.size(); i++) {
                 System.out.println(i + " - " + parSys.get(i - 1).name);
             }
-        System.out.println((parSys.size() + 1) + " - " + "создать новый профиль парашютной системы\n");
-        System.out.println("Введите необходимую цифру для выбора парашютной системы или\n" +
-                "создания нового профиля");
+        System.out.println((parSys.size() + 1) + " - " + "создать новый профиль парашютной системы");
+        System.out.println((parSys.size() + 2) + " - " + "удалить существующий профиль");
+        System.out.println("Введите необходимую цифру для выбора парашютной системы, создания нового профиля или\n" +
+                "удаления");
         String strNumberChoice = readerConsole.readLine();
-        strNumberChoice = getCorrectlyRecordChoice(strNumberChoice, parSys.size() + 1);
+        strNumberChoice = getCorrectlyRecordChoice(strNumberChoice, parSys.size() + 2);
         return strNumberChoice;
     }
 
