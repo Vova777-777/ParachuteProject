@@ -13,21 +13,27 @@ public class Parachute {
     BufferedReader readerConsole = new BufferedReader(new InputStreamReader(System.in));
 
     ParachuteSystem getParachuteSystem() throws IOException {     //  проверить на правильность ввода цифрой
-        List<ParachuteSystem> parSys = getParachuteSystemsFromFile();
+        List<ParachuteSystem> parSys;
+        ParachuteSystem result = new ParachuteSystem("for cycle", 0, 0);
+        while (result.name.equals("for cycle")){
+        parSys = getParachuteSystemsFromFile();
+
         if (parSys.isEmpty()){ creatorParachuteSystem.createParachuteSystem(); parSys = getParachuteSystemsFromFile();}
-        ParachuteSystem result = null;//??????????????
+        //??????????????
         int numberChoice = Integer.parseInt(choiceParachuteSystemByUser(parSys));
         if (numberChoice == parSys.size() + 1) {creatorParachuteSystem.createParachuteSystem();
-        getParachuteSystem();//??????????????
+         continue;//getParachuteSystem();//??????????????
         }
         else if (numberChoice == parSys.size() + 2) {new RemoverParachuteSystem(parSys).removeParachuteSystem();
-        getParachuteSystem();//????????????
+        continue;//getParachuteSystem();//????????????
         }
         for (int i = 1; i <= parSys.size(); i++){
              if (numberChoice == i) result = parSys.get(i - 1);
         }
         System.out.println(parSys);//!!!!!!!!!!!!!!!!!!!!!!!!!!
-        System.out.println(numberChoice);//!!!!!!!!!!!!!!!!!!!!!!!!!!
+        System.out.println("Номер выбора - " + numberChoice);//!!!!!!!!!!!!!!!!!!!!!!!!!!
+            //
+            }
         return result; //parSys.get(numberChoice - 1);
     }
 
@@ -94,7 +100,7 @@ public class Parachute {
 
     public static void main(String[] args) throws IOException {
 
-        System.out.println(new Parachute().getParachuteSystem());
+        System.out.println("Выбранная парашютная система - " + new Parachute().getParachuteSystem());
 
     }
 }
