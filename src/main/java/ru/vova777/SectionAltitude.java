@@ -1,5 +1,6 @@
-import java.io.*;
+package main.java.ru.vova777;
 
+import java.io.IOException;
 
 
 public class SectionAltitude {

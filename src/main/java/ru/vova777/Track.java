@@ -1,3 +1,5 @@
+package main.java.ru.vova777;
+
 public class Track {
     int length;
     int azimuthTrack;

@@ -1,7 +1,9 @@
+package main.java.ru.vova777;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.*;
+import java.util.Queue;
 
 public class ReaderParametersJump {
 
@@ -12,10 +14,11 @@ public class ReaderParametersJump {
    public int verticalSizeHighestSection;
    public int countSections;
    Parachute parachute = new Parachute();
+   ParachuteSystem par = parachute.getParachuteSystem();
 
     public ReaderParametersJump() throws IOException {
-        this.speedDown = parachute.getParachuteSystem().speedDown;
-        this.speedHorizontal = parachute.getParachuteSystem().speedHorizontal;
+        this.speedDown = par.speedDown;
+        this.speedHorizontal = par.speedHorizontal;
         this.altitude = getAltitude();
         this.countSections = getCountSections();
         this.verticalSizeHighestSection = getVerticalSizeHighestSection();
