@@ -9,7 +9,7 @@ import java.nio.file.StandardOpenOption;
 import java.util.List;
 import java.util.Scanner;
 
-public class RemoverParachuteSystem {
+public class RemoverParachuteSystem implements CheckAbleCorrectRecord {
     List<ParachuteSystem> parSys;
 
 
@@ -29,21 +29,27 @@ public class RemoverParachuteSystem {
         parSys.remove(getParachuteSystemForRemove());
         for (int i = 0; i < parSys.size(); i++){
             //System.out.println(parSys);//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            Files.writeString(path,parSys.get(i).name+ " " + parSys.get(i).speedDown + " "
+            Files.writeString(path,parSys.get(i).name+ "&" + parSys.get(i).speedDown + "&"
                     + parSys.get(i).speedHorizontal + "\n", StandardOpenOption.APPEND);
         }
 
     }
 
     int getParachuteSystemForRemove(){
-
         for (int i = 1; i <= parSys.size(); i++) {
             System.out.println(i + " - " + parSys.get(i - 1).name);
         }
-        System.out.println("Выберите парашютную систему для удаления");
-        Scanner scan = new Scanner(System.in);
-        int numberFromConsole = scan.nextInt();
-        int indexForRemove = numberFromConsole - 1;
+        int indexForRemove = 0;
+        while (true) {
+            System.out.println("Выберите парашютную систему для удаления");
+            Scanner scan = new Scanner(System.in);
+            String value = scan.nextLine();
+            if (isDigit(value) && Integer.parseInt(value) >= 1 && Integer.parseInt(value) <= parSys.size()){
+            indexForRemove = Integer.parseInt(value) - 1; break;}
+            else System.out.println("Введите ЦИФРУ выбора для удаления парашютной системы");
+        }
         return indexForRemove;
     }
+
+
 }

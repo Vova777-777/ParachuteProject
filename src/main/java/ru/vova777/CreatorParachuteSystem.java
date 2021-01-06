@@ -9,7 +9,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 
-public class CreatorParachuteSystem {
+public class CreatorParachuteSystem implements CheckAbleCorrectRecord {
 
 
     BufferedReader readerConsole = new BufferedReader(new InputStreamReader(System.in));
@@ -53,14 +53,7 @@ public class CreatorParachuteSystem {
         return value;
     }
 
-    boolean isDigit(String value){
-        try {
-            int digit = Integer.parseInt(value);
-        }catch (NumberFormatException e){
-            return false;
-        }
-        return true;
-    }
+
 
     public static void main(String[] args) throws IOException {
         new CreatorParachuteSystem().createParachuteSystem();

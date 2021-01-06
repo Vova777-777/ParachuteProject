@@ -6,17 +6,13 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
 
-public class CreatorSectionsAltitudeFromFile {
+public class CreatorSectionsAltitudeFromFile implements CreateAbleSectionsAltitude {
     public int verticalSizeHighestSection;
     public int countSections;
     int speedDown;
     BufferedReader readerConsole = new BufferedReader(new InputStreamReader(System.in));
 
-    public CreatorSectionsAltitudeFromFile(int verticalSizeHighestSection, int countSections, int speedDown) {
-        this.verticalSizeHighestSection = verticalSizeHighestSection;
-        this.countSections = countSections;
-        this.speedDown = speedDown;
-    }
+
 
     String getPatchFile() throws IOException {
         System.out.println("Введите путь к файлу");
@@ -25,7 +21,8 @@ public class CreatorSectionsAltitudeFromFile {
     }
 
 
-    public Queue<SectionAltitude> createSections() throws IOException {
+    public Queue<SectionAltitude> createSections(int verticalSizeHighestSection,
+                                                 int countSections, int speedDown) throws IOException {
         FileInputStream file = new FileInputStream(getPatchFile());
         BufferedReader readerFile = new BufferedReader(new InputStreamReader(file));
         Queue<SectionAltitude> queue = new ArrayDeque<>();
@@ -52,6 +49,6 @@ public class CreatorSectionsAltitudeFromFile {
     public static void main(String[] args) throws IOException {
 
 
-        System.out.println(new CreatorSectionsAltitudeFromFile(2100, 5, 5).createSections());
+        System.out.println(new CreatorSectionsAltitudeFromFile().createSections(2100, 5, 5));
     }
 }

@@ -5,37 +5,27 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Queue;
 
-public class ReaderParametersJump {
+public class CollectorParametersJump implements CheckAbleCorrectRecord {
 
-   public String ownDataOrFromInternet;
+   public String userDataOrFromInternet;
    public int speedDown;
    public int speedHorizontal;
    public int altitude;
    public int verticalSizeHighestSection;
    public int countSections;
-   Parachute parachute = new Parachute();
+   NeedfulParachuteSystem parachute = new NeedfulParachuteSystem();
    ParachuteSystem par = parachute.getParachuteSystem();
 
-    public ReaderParametersJump() throws IOException {
+    public CollectorParametersJump() throws IOException {
         this.speedDown = par.speedDown;
         this.speedHorizontal = par.speedHorizontal;
         this.altitude = getAltitude();
         this.countSections = getCountSections();
         this.verticalSizeHighestSection = getVerticalSizeHighestSection();
+
     }
 
     BufferedReader readerConsole = new BufferedReader(new InputStreamReader(System.in));
-
-
-
-    boolean isDigit(String value){
-        try {
-            int digit = Integer.parseInt(value);
-        }catch (NumberFormatException e){
-            return false;
-        }
-        return true;
-    }
 
     int getAltitude () throws IOException {
         System.out.println("Введите высоту раскрытия (цифрами)");
@@ -61,29 +51,31 @@ public class ReaderParametersJump {
         return countSections;
     }
 
-    Queue<SectionAltitude> getSections() throws IOException { //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        if (ownDataForSections()) return new
-                CreatorSectionAltitudeFromUser(altitude, verticalSizeHighestSection, countSections, speedDown).createSections();
-        else return new CreatorSectionsAltitudeFromFile(verticalSizeHighestSection, countSections, speedDown).createSections();
+    Queue<SectionAltitude> getSections(CreateAbleSectionsAltitude creatorSections) throws IOException { //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+       return creatorSections.createSections(verticalSizeHighestSection, countSections, speedDown);
+//        if (ownDataForSections()) return new
+//                CreatorSectionsAltitudeFromUserConsole().createSections (verticalSizeHighestSection, countSections, speedDown);
+//        else return new CreatorSectionsAltitudeFromFile().createSections(verticalSizeHighestSection, countSections, speedDown);
     }
 
-   boolean ownDataForSections() throws IOException {
+    Queue<SectionAltitude> choiceSourceSectionsAltitude() throws IOException {
         System.out.println("Вы сами введете данные? Иначе данные будут получены из файла. YES/NO");
-        ownDataOrFromInternet = readerConsole.readLine();
+        userDataOrFromInternet = readerConsole.readLine();
         while (true){
-            if (ownDataOrFromInternet.equalsIgnoreCase("YES")) break;
-            else if (ownDataOrFromInternet.equalsIgnoreCase("NO")) break;
+            if (userDataOrFromInternet.equalsIgnoreCase("YES"))
+                return getSections(new CreatorSectionsAltitudeFromUserConsole());
+            else if (userDataOrFromInternet.equalsIgnoreCase("NO"))
+                return getSections(new CreatorSectionsAltitudeFromFile());
             else {
                 System.out.println("Введите корректный ответ YES/NO");
-                ownDataOrFromInternet = readerConsole.readLine();
+                userDataOrFromInternet = readerConsole.readLine();
             }
         }
-        return ownDataOrFromInternet.equalsIgnoreCase("YES");
     }
 
     public static void main(String[] args) throws IOException {
-        ReaderParametersJump readerParametersJump = new ReaderParametersJump();
-        for (SectionAltitude a : readerParametersJump.getSections()) {
+        CollectorParametersJump jump = new CollectorParametersJump();
+        for (SectionAltitude a : jump.choiceSourceSectionsAltitude()) {
             System.out.println(a);
         }
     }

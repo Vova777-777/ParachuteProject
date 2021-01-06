@@ -1,7 +1,6 @@
 package main.java.ru.vova777;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.file.Files;
@@ -11,39 +10,32 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
-public class Parachute {
-
+public class NeedfulParachuteSystem implements CheckAbleCorrectRecord {
 
     CreatorParachuteSystem creatorParachuteSystem = new CreatorParachuteSystem();
     BufferedReader readerConsole = new BufferedReader(new InputStreamReader(System.in));
 
-    ParachuteSystem getParachuteSystem() throws IOException {     //  проверить на правильность ввода цифрой
+    ParachuteSystem getParachuteSystem() throws IOException {
         List<ParachuteSystem> parSys;
-        ParachuteSystem result = new ParachuteSystem("for cycle", 0, 0);
+        ParachuteSystem result = new ParachuteSystem("for cycle", 0, 0);//?????? как чтоб не null
         while (result.name.equals("for cycle")){
         parSys = getParachuteSystemsFromFile();
-
         if (parSys.isEmpty()){ creatorParachuteSystem.createParachuteSystem(); parSys = getParachuteSystemsFromFile();}
-        //??????????????
         int numberChoice = Integer.parseInt(choiceParachuteSystemByUser(parSys));
         if (numberChoice == parSys.size() + 1) {creatorParachuteSystem.createParachuteSystem();
-         continue;//getParachuteSystem();//??????????????
+         continue;
         }
         else if (numberChoice == parSys.size() + 2) {new RemoverParachuteSystem(parSys).removeParachuteSystem();
-        continue;//getParachuteSystem();//????????????
+        continue;
         }
         for (int i = 1; i <= parSys.size(); i++){
              if (numberChoice == i) result = parSys.get(i - 1);
         }
-        System.out.println(parSys);//!!!!!!!!!!!!!!!!!!!!!!!!!!
-        System.out.println("Номер выбора - " + numberChoice);//!!!!!!!!!!!!!!!!!!!!!!!!!!
-            //
             }
-        return result; //parSys.get(numberChoice - 1);
+        return result;
     }
 
     String choiceParachuteSystemByUser(List<ParachuteSystem> parSys) throws IOException {
-        //System.out.println(parSys);//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             for (int i = 1; i <= parSys.size(); i++) {
                 System.out.println(i + " - " + parSys.get(i - 1).name);
             }
@@ -60,13 +52,8 @@ public class Parachute {
 
     List<ParachuteSystem>getParachuteSystemsFromFile() throws IOException {
         List<ParachuteSystem> parachuteSystems = new ArrayList<>();
-        List<String> list = new ArrayList<>();
-//        FileInputStream fileInputStream = new FileInputStream(".\\src\\NamesParachuteSystems");
-//        BufferedReader readerFile = new BufferedReader( new InputStreamReader (fileInputStream));
+        List<String> list;
         Path path = Paths.get(".\\src\\main\\java\\ru\\vova777\\NamesParachuteSystems");
-//        File file;//???????????????????
-//        file = new File(getClass().getClassLoader().getResource("/NamesParachuteSystems").getFile());
-//        Path path = Paths.get(String.valueOf(file));
         list = Files.readAllLines(path);
         if (!list.isEmpty()){
             for (int i = 0; i < list.size(); i ++){
@@ -96,19 +83,9 @@ public class Parachute {
     }
 
 
-    boolean isDigit(String value){
-        try {
-            int digit = Integer.parseInt(value);
-        }catch (NumberFormatException e){
-            return false;
-        }
-        return true;
-    }
-
-
     public static void main(String[] args) throws IOException {
 
-        System.out.println("Выбранная парашютная система - " + new Parachute().getParachuteSystem());
+        System.out.println("Выбранная парашютная система - " + new NeedfulParachuteSystem().getParachuteSystem());
 
     }
 }
