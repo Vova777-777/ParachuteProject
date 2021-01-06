@@ -1,6 +1,7 @@
 package main.java.ru.vova777;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.file.Files;
@@ -15,8 +16,10 @@ public class CreatorParachuteSystem {
 
     void createParachuteSystem () throws IOException {
         ParachuteSystem parachuteSystem = new ParachuteSystem(getName(), getSpeedDown(),getSpeedHorizontal());
-        Path path = Paths.get(".\\src\\NamesParachuteSystems");
-        String strInFile = parachuteSystem.name + " " + parachuteSystem.speedDown + " " + parachuteSystem.speedHorizontal + "\n";
+//        File file = new File(getClass().getClassLoader().getResource("NamesParachuteSystems").getFile());//???????????????????
+//        Path path = Paths.get(String.valueOf(file));
+        Path path = Paths.get(".\\src\\main\\java\\ru\\vova777\\NamesParachuteSystems");
+        String strInFile = parachuteSystem.name + "&" + parachuteSystem.speedDown + "&" + parachuteSystem.speedHorizontal + "\n";
         Files.writeString(path, strInFile, StandardOpenOption.APPEND);
     }
 

@@ -1,6 +1,7 @@
 package main.java.ru.vova777;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.file.Files;
@@ -62,7 +63,10 @@ public class Parachute {
         List<String> list = new ArrayList<>();
 //        FileInputStream fileInputStream = new FileInputStream(".\\src\\NamesParachuteSystems");
 //        BufferedReader readerFile = new BufferedReader( new InputStreamReader (fileInputStream));
-        Path path = Paths.get(".\\src\\NamesParachuteSystems");
+        Path path = Paths.get(".\\src\\main\\java\\ru\\vova777\\NamesParachuteSystems");
+//        File file;//???????????????????
+//        file = new File(getClass().getClassLoader().getResource("/NamesParachuteSystems").getFile());
+//        Path path = Paths.get(String.valueOf(file));
         list = Files.readAllLines(path);
         if (!list.isEmpty()){
             for (int i = 0; i < list.size(); i ++){
@@ -74,7 +78,7 @@ public class Parachute {
     }
 
     ParachuteSystem changeStringToParachuteSystem(String strFromFile){
-        StringTokenizer stk = new StringTokenizer(strFromFile, " ");
+        StringTokenizer stk = new StringTokenizer(strFromFile, "&");
         String name = stk.nextToken();
         int speedDown = Integer.parseInt(stk.nextToken());
         int speedHorizontal = Integer.parseInt(stk.nextToken());

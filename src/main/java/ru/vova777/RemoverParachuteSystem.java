@@ -1,5 +1,6 @@
 package main.java.ru.vova777;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -18,7 +19,9 @@ public class RemoverParachuteSystem {
     }
 
     void removeParachuteSystem() throws IOException {
-        Path path = Paths.get(".\\src\\NamesParachuteSystems");
+        //File file = new File(getClass().getClassLoader().getResource("NamesParachuteSystems").getFile());//???????????????????
+        //Path path = Paths.get(String.valueOf(file));
+        Path path = Paths.get(".\\src\\main\\java\\ru\\vova777\\NamesParachuteSystems");
         //if (parSys.size() == 1) {
             Files.delete(path);
             Files.createFile(path);
