@@ -1,8 +1,11 @@
 package ru.vova777;
 
+import ru.vova777.utils.ResourceLoader;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -15,7 +18,7 @@ public class NeedfulParachuteSystem implements CheckAbleIsDigit {
     CreatorParachuteSystem creatorParachuteSystem = new CreatorParachuteSystem();
     BufferedReader readerConsole = new BufferedReader(new InputStreamReader(System.in));
 
-    ParachuteSystem getParachuteSystem() throws IOException {
+    ParachuteSystem getParachuteSystem() throws IOException, URISyntaxException {
         List<ParachuteSystem> parSys;
         ParachuteSystem result = new ParachuteSystem("for cycle", 0, 0);//?????? как чтоб не null
         while (result.name.equals("for cycle")){
@@ -50,11 +53,9 @@ public class NeedfulParachuteSystem implements CheckAbleIsDigit {
 
 
 
-    List<ParachuteSystem>getParachuteSystemsFromFile() throws IOException {
+    List<ParachuteSystem>getParachuteSystemsFromFile() throws IOException, URISyntaxException {
         List<ParachuteSystem> parachuteSystems = new ArrayList<>();
-        List<String> list;
-        Path path = Paths.get(".\\src\\main\\java\\ru\\vova777\\NamesParachuteSystems");
-        list = Files.readAllLines(path);
+        List<String> list = ResourceLoader.getInfoFromResource("NamesParachuteSystems");
         if (!list.isEmpty()){
             for (int i = 0; i < list.size(); i ++){
                 parachuteSystems.add(changeStringToParachuteSystem(list.get(i)));
@@ -83,7 +84,7 @@ public class NeedfulParachuteSystem implements CheckAbleIsDigit {
     }
 
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, URISyntaxException {
 
         System.out.println("Выбранная парашютная система - " + new NeedfulParachuteSystem().getParachuteSystem());
 
