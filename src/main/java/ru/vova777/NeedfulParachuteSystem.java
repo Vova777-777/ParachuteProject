@@ -1,4 +1,4 @@
-package main.java.ru.vova777;
+package ru.vova777;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
-public class NeedfulParachuteSystem implements CheckAbleCorrectRecord {
+public class NeedfulParachuteSystem implements CheckAbleIsDigit {
 
     CreatorParachuteSystem creatorParachuteSystem = new CreatorParachuteSystem();
     BufferedReader readerConsole = new BufferedReader(new InputStreamReader(System.in));

@@ -1,22 +1,36 @@
-package main.java.ru.vova777;
+package ru.vova777;
+
+import ru.vova777.data.SectionAltitude;
+import ru.vova777.data.receiver.CreateAbleSectionsAltitude;
+import ru.vova777.data.receiver.auto.CreatorSectionsAltitudeFromFile;
+import ru.vova777.data.receiver.manual.CreatorSectionsAltitudeFromUserConsole;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Queue;
 
-public class CollectorParametersJump implements CheckAbleCorrectRecord {
+public class CollectorParametersJump implements CheckAbleIsDigit {
 
-   public String userDataOrFromInternet;
+
    public int speedDown;
    public int speedHorizontal;
    public int altitude;
    public int verticalSizeHighestSection;
    public int countSections;
+    int x0;  //координата выброски по оси X
+    int y0;  //координата выброски по оси Y
+   CoordinateJump coordinateJump = new CoordinateJump();
    NeedfulParachuteSystem parachute = new NeedfulParachuteSystem();
    ParachuteSystem par = parachute.getParachuteSystem();
 
+
+
+
+
     public CollectorParametersJump() throws IOException {
+        this.x0 = coordinateJump.getX();
+        this.y0 = coordinateJump.getY();
         this.speedDown = par.speedDown;
         this.speedHorizontal = par.speedHorizontal;
         this.altitude = getAltitude();
@@ -60,6 +74,7 @@ public class CollectorParametersJump implements CheckAbleCorrectRecord {
 
     Queue<SectionAltitude> choiceSourceSectionsAltitude() throws IOException {
         System.out.println("Вы сами введете данные? Иначе данные будут получены из файла. YES/NO");
+        String userDataOrFromInternet;
         userDataOrFromInternet = readerConsole.readLine();
         while (true){
             if (userDataOrFromInternet.equalsIgnoreCase("YES"))

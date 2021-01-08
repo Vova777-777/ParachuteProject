@@ -1,7 +1,6 @@
-package main.java.ru.vova777;
+package ru.vova777;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.file.Files;
@@ -9,15 +8,15 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 
-public class CreatorParachuteSystem implements CheckAbleCorrectRecord {
+public class CreatorParachuteSystem implements CheckAbleIsDigit {
 
 
     BufferedReader readerConsole = new BufferedReader(new InputStreamReader(System.in));
 
     void createParachuteSystem () throws IOException {
         ParachuteSystem parachuteSystem = new ParachuteSystem(getName(), getSpeedDown(),getSpeedHorizontal());
-//        File file = new File(getClass().getClassLoader().getResource("NamesParachuteSystems").getFile());//???????????????????
-//        Path path = Paths.get(String.valueOf(file));
+        //File file = new File(getClass().getResource("/NamesParachuteSystems").getFile());//???????????????????
+        //Path path = Paths.get(String.valueOf(file));
         Path path = Paths.get(".\\src\\main\\java\\ru\\vova777\\NamesParachuteSystems");
         String strInFile = parachuteSystem.name + "&" + parachuteSystem.speedDown + "&" + parachuteSystem.speedHorizontal + "\n";
         Files.writeString(path, strInFile, StandardOpenOption.APPEND);

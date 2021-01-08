@@ -1,4 +1,4 @@
-package main.java.ru.vova777;
+package ru.vova777;
 
 public class ParachuteSystem {
     String name;
