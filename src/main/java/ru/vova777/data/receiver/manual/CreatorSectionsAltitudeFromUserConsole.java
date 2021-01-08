@@ -11,7 +11,7 @@ import java.util.ArrayDeque;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-public class CreatorSectionsAltitudeFromUserConsole implements CreateAbleSectionsAltitude, CheckAbleIsDigit {
+public class CreatorSectionsAltitudeFromUserConsole implements DataReceiverManual, CheckAbleIsDigit {
     int altitude;
     int verticalSizeHighestSection;
     int countSections;

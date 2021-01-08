@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
 
-public class CreatorSectionsAltitudeFromFile implements CreateAbleSectionsAltitude {
+public class CreatorSectionsAltitudeFromFile implements DataReceiverAuto {
     public int verticalSizeHighestSection;
     public int countSections;
     int speedDown;
