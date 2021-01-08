@@ -1,6 +1,9 @@
 package ru.vova777;
 
+import ru.vova777.utils.ResourceLoader;
+
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -17,10 +20,10 @@ public class RemoverParachuteSystem implements CheckAbleIsDigit {
 
     }
 
-    void removeParachuteSystem() throws IOException {
+    void removeParachuteSystem() throws IOException, URISyntaxException {
         //File file = new File(getClass().getClassLoader().getResource("NamesParachuteSystems").getFile());//???????????????????
         //Path path = Paths.get(String.valueOf(file));
-        Path path = Paths.get(".\\src\\main\\java\\ru\\vova777\\NamesParachuteSystems");
+        Path path = ResourceLoader.getPathResource("NamesParachuteSystems");
         //if (parSys.size() == 1) {
             Files.delete(path);
             Files.createFile(path);

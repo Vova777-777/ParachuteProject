@@ -1,8 +1,10 @@
 package ru.vova777;
 
+import ru.vova777.utils.ResourceLoader;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -13,12 +15,11 @@ public class CreatorParachuteSystem implements CheckAbleIsDigit {
 
     BufferedReader readerConsole = new BufferedReader(new InputStreamReader(System.in));
 
-    void createParachuteSystem () throws IOException {
+    void createParachuteSystem () throws IOException, URISyntaxException {
         ParachuteSystem parachuteSystem = new ParachuteSystem(getName(), getSpeedDown(),getSpeedHorizontal());
-        //File file = new File(getClass().getResource("/NamesParachuteSystems").getFile());//???????????????????
-        //Path path = Paths.get(String.valueOf(file));
-        Path path = Paths.get(".\\src\\main\\java\\ru\\vova777\\NamesParachuteSystems");
+        ResourceLoader.getInfoFromResource("NamesParachuteSystems");
         String strInFile = parachuteSystem.name + "&" + parachuteSystem.speedDown + "&" + parachuteSystem.speedHorizontal + "\n";
+        Path path = ResourceLoader.getPathResource("NamesParachuteSystems");
         Files.writeString(path, strInFile, StandardOpenOption.APPEND);
     }
 
@@ -54,7 +55,7 @@ public class CreatorParachuteSystem implements CheckAbleIsDigit {
 
 
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, URISyntaxException {
         new CreatorParachuteSystem().createParachuteSystem();
     }
 
