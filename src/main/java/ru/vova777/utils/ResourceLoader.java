@@ -14,8 +14,13 @@ import java.util.List;
 
 public class ResourceLoader {
     public static List<String> getInfoFromResource(String resourceName) throws URISyntaxException, IOException {
+        Path path = getPathResource(resourceName);
+        return Files.readAllLines(path, StandardCharsets.UTF_8);
+    }
+
+    public static Path getPathResource(String resourceName) throws URISyntaxException {
         URL url = ClassLoaderUtil.getResource(resourceName, ResourceLoader.class);
         Path path = Paths.get(url.toURI());
-        return Files.readAllLines(path, StandardCharsets.UTF_8);
+        return path;
     }
 }
