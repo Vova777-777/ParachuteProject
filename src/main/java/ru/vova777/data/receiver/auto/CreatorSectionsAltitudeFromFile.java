@@ -2,11 +2,13 @@ package ru.vova777.data.receiver.auto;
 
 import ru.vova777.data.receiver.CreateAbleSectionsAltitude;
 import ru.vova777.data.SectionAltitude;
+import ru.vova777.utils.ResourceLoader;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.URISyntaxException;
 import java.util.*;
 
 public class CreatorSectionsAltitudeFromFile implements DataReceiverAuto {
@@ -25,8 +27,8 @@ public class CreatorSectionsAltitudeFromFile implements DataReceiverAuto {
 
 
     public Queue<SectionAltitude> createSections(int verticalSizeHighestSection,
-                                                 int countSections, int speedDown) throws IOException {
-        FileInputStream file = new FileInputStream(getPatchFile());
+                                                 int countSections, int speedDown) throws IOException, URISyntaxException {
+        FileInputStream file = new FileInputStream(String.valueOf(ResourceLoader.getPathResource("777.txt")));
         BufferedReader readerFile = new BufferedReader(new InputStreamReader(file));
         Queue<SectionAltitude> queue = new ArrayDeque<>();
         List<String> list = new ArrayList<>();
@@ -49,7 +51,7 @@ public class CreatorSectionsAltitudeFromFile implements DataReceiverAuto {
     }
 
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, URISyntaxException {
 
 
         System.out.println(new CreatorSectionsAltitudeFromFile().createSections(2100, 5, 5));

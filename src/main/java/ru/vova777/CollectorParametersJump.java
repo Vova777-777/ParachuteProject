@@ -78,7 +78,7 @@ public class CollectorParametersJump implements CheckAbleIsDigit {
         return countSections;
     }
 
-    Queue<SectionAltitude> choiceSourceSectionsAltitude() throws IOException {
+    Queue<SectionAltitude> choiceSourceSectionsAltitude() throws IOException, URISyntaxException {
         System.out.println("Вы сами введете данные? Иначе данные будут получены из файла. YES/NO");
         String userDataOrFromInternet;
         userDataOrFromInternet = readerConsole.readLine();
