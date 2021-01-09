@@ -1,20 +1,25 @@
-import javax.sound.midi.Patch;
-import java.io.*;
-import java.nio.charset.Charset;
+package ru.vova777;
+
+import ru.vova777.utils.ResourceLoader;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 
-public class CreatorParachuteSystem {
+public class CreatorParachuteSystem implements CheckAbleIsDigit {
 
 
     BufferedReader readerConsole = new BufferedReader(new InputStreamReader(System.in));
 
-    void createParachuteSystem () throws IOException {
+    void createParachuteSystem () throws IOException, URISyntaxException {
         ParachuteSystem parachuteSystem = new ParachuteSystem(getName(), getSpeedDown(),getSpeedHorizontal());
-        Path path = Paths.get(".\\src\\NamesParachuteSystems");
-        String strInFile = parachuteSystem.name + " " + parachuteSystem.speedDown + " " + parachuteSystem.speedHorizontal + "\n";
+        ResourceLoader.getInfoFromResource("NamesParachuteSystems");
+        String strInFile = parachuteSystem.name + "&" + parachuteSystem.speedDown + "&" + parachuteSystem.speedHorizontal + "\n";
+        Path path = ResourceLoader.getPathResource("NamesParachuteSystems");
         Files.writeString(path, strInFile, StandardOpenOption.APPEND);
     }
 
@@ -48,16 +53,9 @@ public class CreatorParachuteSystem {
         return value;
     }
 
-    boolean isDigit(String value){
-        try {
-            int digit = Integer.parseInt(value);
-        }catch (NumberFormatException e){
-            return false;
-        }
-        return true;
-    }
 
-    public static void main(String[] args) throws IOException {
+
+    public static void main(String[] args) throws IOException, URISyntaxException {
         new CreatorParachuteSystem().createParachuteSystem();
     }
 

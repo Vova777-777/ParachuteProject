@@ -1,3 +1,5 @@
+package ru.vova777.solution;
+
 public class Track {
     int length;
     int azimuthTrack;

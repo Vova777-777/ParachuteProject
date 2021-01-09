@@ -1,17 +1,23 @@
-import java.io.*;
+package ru.vova777.data.receiver.auto;
+
+import ru.vova777.data.receiver.CreateAbleSectionsAltitude;
+import ru.vova777.data.SectionAltitude;
+import ru.vova777.utils.ResourceLoader;
+
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URISyntaxException;
 import java.util.*;
 
-public class CreatorSectionsAltitudeFromFile {
+public class CreatorSectionsAltitudeFromFile implements DataReceiverAuto {
     public int verticalSizeHighestSection;
     public int countSections;
     int speedDown;
     BufferedReader readerConsole = new BufferedReader(new InputStreamReader(System.in));
 
-    public CreatorSectionsAltitudeFromFile(int verticalSizeHighestSection, int countSections, int speedDown) {
-        this.verticalSizeHighestSection = verticalSizeHighestSection;
-        this.countSections = countSections;
-        this.speedDown = speedDown;
-    }
+
 
     String getPatchFile() throws IOException {
         System.out.println("Введите путь к файлу");
@@ -20,8 +26,9 @@ public class CreatorSectionsAltitudeFromFile {
     }
 
 
-    public Queue<SectionAltitude> createSections() throws IOException {
-        FileInputStream file = new FileInputStream(getPatchFile());
+    public Queue<SectionAltitude> createSections(int verticalSizeHighestSection,
+                                                 int countSections, int speedDown) throws IOException, URISyntaxException {
+        FileInputStream file = new FileInputStream(String.valueOf(ResourceLoader.getPathResource("777.txt")));
         BufferedReader readerFile = new BufferedReader(new InputStreamReader(file));
         Queue<SectionAltitude> queue = new ArrayDeque<>();
         List<String> list = new ArrayList<>();
@@ -35,8 +42,8 @@ public class CreatorSectionsAltitudeFromFile {
             if (i == countSections) time = verticalSizeHighestSection / speedDown;
             else time = 500 / speedDown;
             SectionAltitude sectionAltitude = new SectionAltitude(time);
-            sectionAltitude.windStrength = Integer.parseInt(list.get(2));
-            sectionAltitude.azimuthWind = Integer.parseInt(list.get(5));
+            sectionAltitude.setWindStrength(Integer.parseInt(list.get(2)));
+            sectionAltitude.setAzimuthWind(Integer.parseInt(list.get(5)));
             queue.add(sectionAltitude);
             list.clear();
         }
@@ -44,9 +51,9 @@ public class CreatorSectionsAltitudeFromFile {
     }
 
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, URISyntaxException {
 
 
-        System.out.println(new CreatorSectionsAltitudeFromFile(2100, 5, 5).createSections());
+        System.out.println(new CreatorSectionsAltitudeFromFile().createSections(2100, 5, 5));
     }
 }
