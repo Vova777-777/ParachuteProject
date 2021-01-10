@@ -28,8 +28,8 @@ public class CollectorParametersJump implements CheckAbleIsDigit {
     public int altitude;
     public int verticalSizeHighestSection;
     public int countSections;
-    int x0;  //координата выброски по оси X
-    int y0;  //координата выброски по оси Y
+    public int x0;  //координата выброски по оси X
+    public int y0;  //координата выброски по оси Y
     CoordinateJump coordinateJump = new CoordinateJump();
     NeedfulParachuteSystem parachute = new NeedfulParachuteSystem();
     ParachuteSystem par = parachute.getParachuteSystem();
@@ -44,8 +44,8 @@ public class CollectorParametersJump implements CheckAbleIsDigit {
         this.speedDown = par.speedDown;
         this.speedHorizontal = par.speedHorizontal;
         this.altitude = getAltitude();
-        this.countSections = getCountSections();
         this.verticalSizeHighestSection = getVerticalSizeHighestSection();
+        this.countSections = getCountSections();
         this.receiverAuto = receiverAuto;
         this.receiverManual = receiverManual;
     }
@@ -78,7 +78,7 @@ public class CollectorParametersJump implements CheckAbleIsDigit {
         return countSections;
     }
 
-    Queue<SectionAltitude> choiceSourceSectionsAltitude() throws IOException, URISyntaxException {
+    public Queue<SectionAltitude> choiceSourceSectionsAltitude() throws IOException, URISyntaxException {
         System.out.println("Вы сами введете данные? Иначе данные будут получены из файла. YES/NO");
         String userDataOrFromInternet;
         userDataOrFromInternet = readerConsole.readLine();
