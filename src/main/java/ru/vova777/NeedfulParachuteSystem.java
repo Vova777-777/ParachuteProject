@@ -31,7 +31,8 @@ public class NeedfulParachuteSystem implements CheckAbleIsDigit {
         else if (numberChoice == parSys.size() + 2) {new RemoverParachuteSystem(parSys).removeParachuteSystem();
         continue;
         }
-        for (int i = 1; i <= parSys.size(); i++){
+
+            for (int i = 1; i <= parSys.size(); i++){
              if (numberChoice == i) result = parSys.get(i - 1);
         }
             }
@@ -58,6 +59,7 @@ public class NeedfulParachuteSystem implements CheckAbleIsDigit {
         List<String> list = ResourceLoader.getInfoFromResource("NamesParachuteSystems");
         if (!list.isEmpty()){
             for (int i = 0; i < list.size(); i ++){
+               // System.out.println(list.get(i));
                 parachuteSystems.add(changeStringToParachuteSystem(list.get(i)));
             }
         }

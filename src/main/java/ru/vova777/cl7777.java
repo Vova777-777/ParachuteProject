@@ -9,16 +9,12 @@ import java.util.Objects;
 
 public class cl7777 {
     public void main1() throws IOException {
-
-        File file = new File(getClass().getClassLoader().getResource("NamesParachuteSystems").getPath());
-
-        String content = new String(Files.readAllBytes(file.toPath()));
-        System.out.println(content);
-
-
+        System.out.println(1500%500);
     }
 
+
+
     public static void main(String[] args) throws IOException {
-        new cl7777().main1();
+        new cl7777();
     }
 }
