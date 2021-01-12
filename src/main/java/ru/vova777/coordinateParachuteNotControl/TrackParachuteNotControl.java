@@ -9,7 +9,6 @@ import ru.vova777.parametersJump.CollectorParametersJump;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.util.ArrayDeque;
 import java.util.Iterator;
 import java.util.Queue;
 
@@ -56,12 +55,10 @@ public class TrackParachuteNotControl {
         DataReceiverAuto receiverAuto = new CreatorSectionsAltitudeFromFile();
         CollectorParametersJump jump = new CollectorParametersJump(receiverAuto, receiverManual);
         Queue<SectionAltitude> sectionAltitudes = jump.choiceSourceSectionsAltitude();
-
-        TrackParachuteNotControl track = new TrackParachuteNotControl();
-        track.getFinishTrackX(jump.x0, sectionAltitudes);
-        track.getFinishTrackY(jump.y0, sectionAltitudes);
-        System.out.println(track.getFinishTrackX(jump.x0, sectionAltitudes));
-        System.out.println(track.getFinishTrackY(jump.y0, sectionAltitudes));
+        getFinishTrackX(jump.x0, sectionAltitudes);
+        getFinishTrackY(jump.y0, sectionAltitudes);
+        System.out.println(getFinishTrackX(jump.x0, sectionAltitudes));
+        System.out.println(getFinishTrackY(jump.y0, sectionAltitudes));
 
 //        SectionAltitude sA1 = new SectionAltitude(60);
 //        sA1.setAzimuthWind(75);
