@@ -1,11 +1,7 @@
-package ru.vova777;
+package ru.vova777.parametersJump;
 
 
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Objects;
 
 public class cl7777 {
     public void main1() throws IOException {

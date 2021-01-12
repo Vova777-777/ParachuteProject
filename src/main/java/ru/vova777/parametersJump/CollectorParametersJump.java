@@ -1,8 +1,6 @@
-package ru.vova777;
+package ru.vova777.parametersJump;
 
-import com.opensymphony.xwork2.util.ClassLoaderUtil;
 import ru.vova777.data.SectionAltitude;
-import ru.vova777.data.receiver.CreateAbleSectionsAltitude;
 import ru.vova777.data.receiver.auto.CreatorSectionsAltitudeFromFile;
 import ru.vova777.data.receiver.auto.DataReceiverAuto;
 import ru.vova777.data.receiver.manual.CreatorSectionsAltitudeFromUserConsole;
@@ -12,12 +10,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URISyntaxException;
-import java.net.URL;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.List;
 import java.util.Queue;
 
 public class CollectorParametersJump implements CheckAbleIsDigit {

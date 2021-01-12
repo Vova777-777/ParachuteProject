@@ -1,4 +1,4 @@
-package ru.vova777.solution;
+package ru.vova777.coordinateParachuteNotControl;
 
 public class FourthCoordinateQuarter extends CoordinateQuarter {
 

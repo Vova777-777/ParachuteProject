@@ -1,4 +1,4 @@
-package ru.vova777;
+package ru.vova777.parametersJump;
 
 import ru.vova777.utils.ResourceLoader;
 
@@ -6,9 +6,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URISyntaxException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;

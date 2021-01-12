@@ -1,7 +1,6 @@
 package ru.vova777.data.receiver.manual;
 
-import ru.vova777.CheckAbleIsDigit;
-import ru.vova777.data.receiver.CreateAbleSectionsAltitude;
+import ru.vova777.parametersJump.CheckAbleIsDigit;
 import ru.vova777.data.SectionAltitude;
 
 import java.io.BufferedReader;

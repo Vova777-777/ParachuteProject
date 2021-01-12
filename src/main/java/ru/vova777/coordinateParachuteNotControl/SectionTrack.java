@@ -1,4 +1,4 @@
-package ru.vova777.solution;
+package ru.vova777.coordinateParachuteNotControl;
 
 import ru.vova777.data.SectionAltitude;
 
