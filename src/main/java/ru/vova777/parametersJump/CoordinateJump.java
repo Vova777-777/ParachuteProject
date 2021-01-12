@@ -1,4 +1,4 @@
-package ru.vova777;
+package ru.vova777.parametersJump;
 
 import java.util.Scanner;
 

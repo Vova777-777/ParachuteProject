@@ -1,4 +1,4 @@
-package ru.vova777;
+package ru.vova777.parametersJump;
 
 import ru.vova777.utils.ResourceLoader;
 
@@ -6,9 +6,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URISyntaxException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
@@ -31,7 +28,8 @@ public class NeedfulParachuteSystem implements CheckAbleIsDigit {
         else if (numberChoice == parSys.size() + 2) {new RemoverParachuteSystem(parSys).removeParachuteSystem();
         continue;
         }
-        for (int i = 1; i <= parSys.size(); i++){
+
+            for (int i = 1; i <= parSys.size(); i++){
              if (numberChoice == i) result = parSys.get(i - 1);
         }
             }
@@ -58,6 +56,7 @@ public class NeedfulParachuteSystem implements CheckAbleIsDigit {
         List<String> list = ResourceLoader.getInfoFromResource("NamesParachuteSystems");
         if (!list.isEmpty()){
             for (int i = 0; i < list.size(); i ++){
+               // System.out.println(list.get(i));
                 parachuteSystems.add(changeStringToParachuteSystem(list.get(i)));
             }
         }

@@ -6,6 +6,7 @@ public abstract class CalculationCoordinateQuarter {
     int length;
     int azimuth;
 
+
     public CalculationCoordinateQuarter(int x0, int y0, int length, int azimuth) {
         this.x0 = x0;
         this.y0 = y0;

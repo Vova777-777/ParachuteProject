@@ -4,10 +4,7 @@ import ru.vova777.data.receiver.CreateAbleSectionsAltitude;
 import ru.vova777.data.SectionAltitude;
 import ru.vova777.utils.ResourceLoader;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.URISyntaxException;
 import java.util.*;
 
@@ -17,13 +14,6 @@ public class CreatorSectionsAltitudeFromFile implements DataReceiverAuto {
     int speedDown;
     BufferedReader readerConsole = new BufferedReader(new InputStreamReader(System.in));
 
-
-
-    String getPatchFile() throws IOException {
-        System.out.println("Введите путь к файлу");
-        String fileName = readerConsole.readLine();
-        return fileName;
-    }
 
 
     public Queue<SectionAltitude> createSections(int verticalSizeHighestSection,
@@ -55,5 +45,6 @@ public class CreatorSectionsAltitudeFromFile implements DataReceiverAuto {
 
 
         System.out.println(new CreatorSectionsAltitudeFromFile().createSections(2100, 5, 5));
+
     }
 }

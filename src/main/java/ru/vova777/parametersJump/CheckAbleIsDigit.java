@@ -1,4 +1,4 @@
-package ru.vova777;
+package ru.vova777.parametersJump;
 
 public interface CheckAbleIsDigit {
     default boolean isDigit(String value){

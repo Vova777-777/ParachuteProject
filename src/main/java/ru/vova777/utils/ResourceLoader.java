@@ -1,7 +1,6 @@
 package ru.vova777.utils;
 
 import com.opensymphony.xwork2.util.ClassLoaderUtil;
-import ru.vova777.CollectorParametersJump;
 
 import java.io.IOException;
 import java.net.URISyntaxException;

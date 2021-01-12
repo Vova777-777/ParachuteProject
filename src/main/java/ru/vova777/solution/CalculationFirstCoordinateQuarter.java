@@ -13,14 +13,17 @@ public class CalculationFirstCoordinateQuarter {
         this.azimuth = azimuth;
     }
 
+    ConverterGradAndRad converter = new ConverterGradAndRad();
+
     public int getFinishSectionX() {
-        int deltaX = (int) (Math.cos(azimuth) * length);
+
+        int deltaX = (int) (Math.cos(converter.convertGradToRad((azimuth)) * length));
         int x = x0 + deltaX;
         return x;
     }
 
     public int getFinishSectionY() {
-        int deltaY = (int) (Math.sin(azimuth) * length);
+        int deltaY = (int) (Math.sin(converter.convertGradToRad((azimuth)) * length));
         int y = x0 + deltaY;
         return y;
     }
