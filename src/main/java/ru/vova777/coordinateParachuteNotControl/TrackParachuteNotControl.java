@@ -1,55 +1,48 @@
 package ru.vova777.coordinateParachuteNotControl;
 
 import ru.vova777.data.SectionAltitude;
+import ru.vova777.data.receiver.auto.CreatorSectionsAltitudeFromFile;
+import ru.vova777.data.receiver.auto.DataReceiverAuto;
+import ru.vova777.data.receiver.manual.CreatorSectionsAltitudeFromUserConsole;
+import ru.vova777.data.receiver.manual.DataReceiverManual;
+import ru.vova777.parametersJump.CollectorParametersJump;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayDeque;
+import java.util.Iterator;
 import java.util.Queue;
 
 public class TrackParachuteNotControl {
-    int x0;
-    int y0;
-    int azimuthTrack;
-    int lengthTrack;
-    int x;
-    int y;
-    Queue<SectionAltitude> sectionAltitudes;
 
 
-
-
-
-
-
-    public int getFinishTrackX(int x0, Queue<SectionAltitude> sectionAltitudes){
-        int finishX = 0;
-        int timesCycle = sectionAltitudes.size();
-        for (int i = 0; i < timesCycle; i ++){
-            SectionAltitude sectionAltitude = sectionAltitudes.poll();
+    public static int getFinishTrackX(int x0, Queue<SectionAltitude> sectionAltitudes){
+        int finishCoordinate = 0;
+        Iterator<SectionAltitude> iterator = sectionAltitudes.iterator();
+        while (iterator.hasNext()){
+            SectionAltitude sectionAltitude = iterator.next();
             CoordinateQuarter ccq = getNeedfulCoordinateQuarter(sectionAltitude.getAzimuthWind());
-
-            finishX = SectionTrack.getFinishX(x0, ccq, sectionAltitude);
-            x0 = finishX;
+                finishCoordinate = SectionTrack.getFinishX(x0, ccq, sectionAltitude);
+            x0 = finishCoordinate;
         }
-        return finishX;
+        return finishCoordinate;
     }
 
-    public int getFinishTrackY(int y0, Queue<SectionAltitude> sectionAltitudes){
-        int finishY = 0;
-        int timesCycle = sectionAltitudes.size();
-        for (int i = 0; i < timesCycle; i ++){
-            SectionAltitude sectionAltitude = sectionAltitudes.poll();
-            CoordinateQuarter ccq = getNeedfulCoordinateQuarter(sectionAltitudes.poll().getAzimuthWind());
-            finishY = SectionTrack.getFinishY(y0, ccq, sectionAltitudes.poll());
-            y0 = SectionTrack.getFinishY(y0, ccq, sectionAltitudes.poll());
+    public static int getFinishTrackY(int y0, Queue<SectionAltitude> sectionAltitudes){
+        int finishCoordinate = 0;
+        Iterator<SectionAltitude> iterator = sectionAltitudes.iterator();
+        while (iterator.hasNext()){
+            SectionAltitude sectionAltitude = iterator.next();
+            CoordinateQuarter ccq = getNeedfulCoordinateQuarter(sectionAltitude.getAzimuthWind());
+            finishCoordinate = SectionTrack.getFinishY(y0, ccq, sectionAltitude);
+            y0 = finishCoordinate;
         }
-        //int finishY = y0;
-        return finishY;
+        return finishCoordinate;
     }
 
 
-    private CoordinateQuarter getNeedfulCoordinateQuarter(int azimuthTrack){
+
+    private static CoordinateQuarter getNeedfulCoordinateQuarter(int azimuthTrack){
         if (azimuthTrack >= 0 && azimuthTrack <= 90) return new FirstCoordinateQuarter();
         else if (azimuthTrack > 90 && azimuthTrack <= 180) return new SecondCoordinateQuarter();
         else if (azimuthTrack > 180 && azimuthTrack <= 270) return new ThirdCoordinateQuarter();
@@ -59,28 +52,32 @@ public class TrackParachuteNotControl {
 
 
     public static void main(String[] args) throws IOException, URISyntaxException {
-//        DataReceiverManual receiverManual = new CreatorSectionsAltitudeFromUserConsole();
-//        DataReceiverAuto receiverAuto = new CreatorSectionsAltitudeFromFile();
-//        CollectorParametersJump jump = new CollectorParametersJump(receiverAuto, receiverManual);
-//        Queue<SectionAltitude> sectionAltitudes = jump.choiceSourceSectionsAltitude();
-//
-//        TrackParachuteNotControl track = new TrackParachuteNotControl();
-//        track.getFinishTrackX(jump.x0, sectionAltitudes);
-//        track.getFinishTrackY(jump.y0, sectionAltitudes);
-//        System.out.println(track.getFinishTrackX(jump.x0, sectionAltitudes));
-//        System.out.println(track.getFinishTrackY(jump.y0, sectionAltitudes));
+        DataReceiverManual receiverManual = new CreatorSectionsAltitudeFromUserConsole();
+        DataReceiverAuto receiverAuto = new CreatorSectionsAltitudeFromFile();
+        CollectorParametersJump jump = new CollectorParametersJump(receiverAuto, receiverManual);
+        Queue<SectionAltitude> sectionAltitudes = jump.choiceSourceSectionsAltitude();
 
-        SectionAltitude sA1 = new SectionAltitude(100);
-        sA1.setAzimuthWind(45);
-        sA1.setWindStrength(5);
-        SectionAltitude sA2 = new SectionAltitude(100);
-        sA2.setAzimuthWind(30);
-        sA2.setWindStrength(10);
-        Queue<SectionAltitude> sectionAltitudes = new ArrayDeque<>();
-        sectionAltitudes.add(sA1);
-        sectionAltitudes.add(sA2);
-        System.out.println(new TrackParachuteNotControl().getFinishTrackX(10,sectionAltitudes));
+        TrackParachuteNotControl track = new TrackParachuteNotControl();
+        track.getFinishTrackX(jump.x0, sectionAltitudes);
+        track.getFinishTrackY(jump.y0, sectionAltitudes);
+        System.out.println(track.getFinishTrackX(jump.x0, sectionAltitudes));
+        System.out.println(track.getFinishTrackY(jump.y0, sectionAltitudes));
 
+//        SectionAltitude sA1 = new SectionAltitude(60);
+//        sA1.setAzimuthWind(75);
+//        sA1.setWindStrength(10);
+//        SectionAltitude sA2 = new SectionAltitude(100);
+//        sA2.setAzimuthWind(130);
+//        sA2.setWindStrength(15);
+//        SectionAltitude sA3 = new SectionAltitude(100);
+//        sA3.setAzimuthWind(270);
+//        sA3.setWindStrength(5);
+//        Queue<SectionAltitude> sectionAltitudes = new ArrayDeque<>();
+//        sectionAltitudes.add(sA1);
+//        sectionAltitudes.add(sA2);
+//        sectionAltitudes.add(sA3);
+//        System.out.println(getFinishTrackX(-300,sectionAltitudes));
+//        System.out.println(getFinishTrackY(100,sectionAltitudes));
     }
 
 

@@ -26,7 +26,6 @@ public class CreatorSectionsAltitudeFromUserConsole implements DataReceiverManua
         int altitudeForParameters;
         altitudeForParameters = countSections * 500;//altitude + (500 - verticalSizeHighestSection);
         for (int i = countSections; i > 0; i--) {
-            System.out.println(countSections);//!!!!!!!!!!!!!!!!!!!!!!!!!!!
             System.out.println(question + "" + altitudeForParameters);
             String strengthAndAzimuthWind = readerConsole.readLine();
             if (!checkRightlyConsoleNotice(strengthAndAzimuthWind)) {i++;
@@ -46,6 +45,7 @@ public class CreatorSectionsAltitudeFromUserConsole implements DataReceiverManua
     }
 
     private boolean checkRightlyConsoleNotice (String str){
+        if (!str.contains(",")) return false;
         StringTokenizer stk = new StringTokenizer(str, ", ");
         String strengthWind = stk.nextToken();
         String azimuthWind = stk.nextToken();

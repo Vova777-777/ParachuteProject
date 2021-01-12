@@ -1,10 +1,7 @@
 package ru.vova777.coordinateParachuteNotControl;
 
 public class SecondCoordinateQuarter extends CoordinateQuarter {
-    int x0;
-    int y0;
-    int length;
-    int azimuth;
+
 
     @Override
     public int getFinishSectionX(int x0, int length, int azimuth) {
