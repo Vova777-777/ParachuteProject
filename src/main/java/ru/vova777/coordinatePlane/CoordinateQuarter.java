@@ -1,4 +1,4 @@
-package ru.vova777.coordinateParachuteNotControl;
+package ru.vova777.coordinatePlane;
 
 public abstract class CoordinateQuarter {
 

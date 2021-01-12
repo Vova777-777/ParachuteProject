@@ -1,5 +1,6 @@
 package ru.vova777.coordinateParachuteNotControl;
 
+import ru.vova777.coordinatePlane.*;
 import ru.vova777.data.SectionAltitude;
 import ru.vova777.data.receiver.auto.CreatorSectionsAltitudeFromFile;
 import ru.vova777.data.receiver.auto.DataReceiverAuto;

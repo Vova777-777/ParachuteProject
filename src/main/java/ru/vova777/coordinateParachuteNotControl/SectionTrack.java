@@ -1,5 +1,6 @@
 package ru.vova777.coordinateParachuteNotControl;
 
+import ru.vova777.coordinatePlane.CoordinateQuarter;
 import ru.vova777.data.SectionAltitude;
 
 public class SectionTrack {
