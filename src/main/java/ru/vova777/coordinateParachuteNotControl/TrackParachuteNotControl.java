@@ -22,8 +22,8 @@ public class TrackParachuteNotControl {
         Iterator<SectionAltitude> iterator = sectionAltitudes.iterator();
         while (iterator.hasNext()){
             SectionAltitude sectionAltitude = iterator.next();
-            CoordinateQuarter ccq = CoordinateQuarter.getNeedfulCoordinateQuarter(sectionAltitude.getAzimuthWind());
-                finishCoordinate = SectionTrack.getFinishX(x0, ccq, sectionAltitude);
+            CoordinateQuarter cq = CoordinateQuarter.getNeedfulCoordinateQuarter(sectionAltitude.getAzimuthWind());
+                finishCoordinate = SectionTrack.getFinishX(x0, cq, sectionAltitude);
             x0 = finishCoordinate;
         }
         return finishCoordinate;
@@ -34,8 +34,8 @@ public class TrackParachuteNotControl {
         Iterator<SectionAltitude> iterator = sectionAltitudes.iterator();
         while (iterator.hasNext()){
             SectionAltitude sectionAltitude = iterator.next();
-            CoordinateQuarter ccq = CoordinateQuarter.getNeedfulCoordinateQuarter(sectionAltitude.getAzimuthWind());
-            finishCoordinate = SectionTrack.getFinishY(y0, ccq, sectionAltitude);
+            CoordinateQuarter cq = CoordinateQuarter.getNeedfulCoordinateQuarter(sectionAltitude.getAzimuthWind());
+            finishCoordinate = SectionTrack.getFinishY(y0, cq, sectionAltitude);
             y0 = finishCoordinate;
         }
         return finishCoordinate;
