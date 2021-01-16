@@ -18,4 +18,10 @@ public class FourthCoordinateQuarter extends CoordinateQuarter {
         int y = y0 + deltaY;
         return y;
     }
+
+    @Override
+    public int getAzimuth(int delta_x, int lengthTrack) {
+        int angle = (int) Math.toDegrees(Math.acos(delta_x / lengthTrack));
+        return 360 - angle;
+    }
 }
