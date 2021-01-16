@@ -5,6 +5,8 @@ public abstract class CoordinateQuarter {
 
     public abstract int getFinishSectionX(int x0,int length, int azimuth);
     public abstract int getFinishSectionY(int y0, int length, int azimuth);
+    public abstract int getAzimuth(int delta_x, int lengthTrack);
+
 
     public static CoordinateQuarter getNeedfulCoordinateQuarter(int azimuthTrack){
         if (0 <= azimuthTrack && azimuthTrack <= 90) return new FirstCoordinateQuarter();
@@ -12,4 +14,20 @@ public abstract class CoordinateQuarter {
         else if (180 < azimuthTrack && azimuthTrack <= 270) return new ThirdCoordinateQuarter();
         return new FourthCoordinateQuarter();
     }
+
+    public int getLength (int x0, int y0, int finish_x, int finish_y){
+        int delta_x = getDelta_x(finish_x, x0);
+        int delta_y = getDelta_y(finish_y, y0);
+        return (int) Math.sqrt((delta_x * delta_x) + (delta_y * delta_y));
+    }
+
+    private int getDelta_x(int finish_x, int x0){
+        return finish_x - x0;
+    }
+
+    private int getDelta_y(int finish_y, int y0){
+        return finish_y - y0;
+    }
+
+
 }
