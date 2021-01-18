@@ -18,8 +18,17 @@ public class SecondCoordinateQuarter extends CoordinateQuarter {
     }
 
     @Override
-    public int getAzimuth(int delta_x, int lengthTrack) {
-        int angle = (int) Math.toDegrees(Math.acos(delta_x / lengthTrack));
-        return 180 - angle;
+    public double getAzimuth(int delta_x, int lengthTrack) {
+        double angle = Math.toDegrees(Math.acos((double) delta_x / lengthTrack));
+        return angle; //(180 - angle);
+    }
+
+    public static void main(String[] args) {
+        SecondCoordinateQuarter qua = new SecondCoordinateQuarter();
+        System.out.println(qua.getFinishSectionX(100,2000,160));
+        System.out.println(qua.getAzimuth(-100,2000));
+        System.out.println(qua.getLength(100,200,-1779,884));
     }
 }
+
+

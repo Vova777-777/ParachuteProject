@@ -20,8 +20,8 @@ public class ThirdCoordinateQuarter extends CoordinateQuarter {
     }
 
     @Override
-    public int getAzimuth(int delta_x, int lengthTrack) {
-        int angle = (int) Math.toDegrees(Math.asin(delta_x / lengthTrack));
-        return 270 - angle;
+    public double getAzimuth(int delta_x, int lengthTrack) {
+        double angle = Math.toDegrees(Math.asin((double) delta_x / lengthTrack));
+        return  (270 - angle);
     }
 }

@@ -20,7 +20,7 @@ public class FirstCoordinateQuarter extends CoordinateQuarter {
     }
 
     @Override
-    public int getAzimuth(int delta_x, int lengthTrack) {
-        return (int) Math.toDegrees(Math.acos(delta_x / lengthTrack));
+    public double getAzimuth(int delta_x, int lengthTrack) {
+        return  Math.toDegrees(Math.acos((double) delta_x / lengthTrack));
     }
 }

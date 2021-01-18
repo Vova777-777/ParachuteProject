@@ -5,14 +5,20 @@ import java.io.*;
 
 public class cl7777 {
     public void main1() throws IOException {
-        int x = -300;
-        int y = 155;
-        System.out.println(x+y);
+
+            double a = (double) Math.toDegrees(Math.acos(2354 / 2824));
+            a = 2354.0/2824;
+        System.out.println(a);
+            a = Math.acos(a);
+        System.out.println(a);
+        a = Math.toDegrees(a);
+        System.out.println(a);
+
     }
 
 
 
     public static void main(String[] args) throws IOException {
-        new cl7777().main1();
+         new cl7777().main1();
     }
 }

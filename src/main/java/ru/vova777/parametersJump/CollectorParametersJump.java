@@ -24,17 +24,24 @@ public class CollectorParametersJump implements CheckAbleIsDigit {
     public int y0;  //координата выброски по оси Y
     CoordinateJump coordinateJump = new CoordinateJump();
     NeedfulParachuteSystem parachute = new NeedfulParachuteSystem();
-    ParachuteSystem par = parachute.getParachuteSystem();
+//    ParachuteSystem par = parachute.getParachuteSystem();
     DataReceiverAuto receiverAuto;
     DataReceiverManual receiverManual;
+
+    public CollectorParametersJump(int x0, int y0, int speedDown, int speedHorizontal){
+        this.x0 = x0;
+        this.y0 = y0;
+        this.speedDown = speedDown;
+        this.speedHorizontal = speedHorizontal;
+    }//!!!!!!!!!!!!!!!!!!!!!!!!
 
 
     public CollectorParametersJump(DataReceiverAuto receiverAuto,
                                    DataReceiverManual receiverManual) throws IOException, URISyntaxException {
         this.x0 = coordinateJump.getX();
         this.y0 = coordinateJump.getY();
-        this.speedDown = par.speedDown;
-        this.speedHorizontal = par.speedHorizontal;
+ //       this.speedDown = par.speedDown;
+   //     this.speedHorizontal = par.speedHorizontal;
         this.altitude = getAltitude();
         this.verticalSizeHighestSection = getVerticalSizeHighestSection();
         this.countSections = getCountSections();
