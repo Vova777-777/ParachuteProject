@@ -126,7 +126,7 @@ public class CreatorAnswer implements CheckAbleIsDigit {
         CreatorAnswer answer = new CreatorAnswer(jump);
         Map<Double, CollectorParametersAnswer> map = answer.createAllAnswers(ccq, trackNotWindX0,
                 trackNotWindY0, 1500);
-        int i = 1;
+        int i = 0;
         for (Map.Entry<Double, CollectorParametersAnswer> a : map.entrySet()) {
             System.out.println(i + ") "+ a);
             i++;
