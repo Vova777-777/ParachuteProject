@@ -60,7 +60,7 @@ public class CreatorAnswer implements CheckAbleIsDigit {
     public Map<Double, CollectorParametersAnswer> createAllAnswers(CoordinateQuarter ccq,
                                                                     int trackParNotWind_x0,
                                                                     int trackParNotWind_y0, int altitude) {
-        Map<Double, CollectorParametersAnswer> map = new HashMap<>();
+        Map<Double, CollectorParametersAnswer> map = new TreeMap<>();
        for (int i = 0; i < 360; i++){
            TrackParControlNotWind trackParControl = new TrackParControlNotWind(trackParNotWind_x0, trackParNotWind_y0, i);
            CalculatorParametersTrackResult calculator = new CalculatorParametersTrackResult(ccq);

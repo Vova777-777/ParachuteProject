@@ -2,8 +2,6 @@ package ru.vova777.coordinatePlane;
 
 public class FirstCoordinateQuarter extends CoordinateQuarter {
 
-
-
     @Override
     public int getFinishSectionX(int x0, int length, int azimuth) {
 
@@ -22,5 +20,15 @@ public class FirstCoordinateQuarter extends CoordinateQuarter {
     @Override
     public double getAzimuth(int delta_x, int lengthTrack) {
         return  Math.toDegrees(Math.acos((double) delta_x / lengthTrack));
+    }
+
+    @Override
+    public int getDelta_x(int x0, int finish_x) {
+        return (finish_x - x0);
+    }
+
+    @Override
+    public int getDelta_y(int y0, int finish_y) {
+        return (finish_y - y0);
     }
 }
