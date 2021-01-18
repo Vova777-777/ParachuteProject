@@ -1,14 +1,14 @@
 package ru.vova777.ControlParachute;
 
 public class TrackResult {
-    int x0;
-    int y0;
-    int finishX;
-    int finishY;
-    int length;
-    int azimuth;
+    double x0;
+    double y0;
+    double finishX;
+    double finishY;
+    double length;
+    double azimuth;
 
-    public TrackResult(int x0, int y0, int finishX, int finishY, int length, int azimuth) {
+    public TrackResult(double x0, double y0, double finishX, double finishY, double length, double azimuth) {
         this.x0 = x0;
         this.y0 = y0;
         this.finishX = finishX;

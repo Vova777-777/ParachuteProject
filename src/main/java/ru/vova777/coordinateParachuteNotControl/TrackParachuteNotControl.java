@@ -17,8 +17,8 @@ import java.util.Queue;
 public class TrackParachuteNotControl {
 
 
-    public static int getFinishTrackX(int x0, Queue<SectionAltitude> sectionAltitudes){
-        int finishCoordinate = 0;
+    public static double getFinishTrackX(double x0, Queue<SectionAltitude> sectionAltitudes){
+        double finishCoordinate = 0;
         Iterator<SectionAltitude> iterator = sectionAltitudes.iterator();
         while (iterator.hasNext()){
             SectionAltitude sectionAltitude = iterator.next();
@@ -29,8 +29,8 @@ public class TrackParachuteNotControl {
         return finishCoordinate;
     }
 
-    public static int getFinishTrackY(int y0, Queue<SectionAltitude> sectionAltitudes){
-        int finishCoordinate = 0;
+    public static double getFinishTrackY(double y0, Queue<SectionAltitude> sectionAltitudes){
+        double finishCoordinate = 0;
         Iterator<SectionAltitude> iterator = sectionAltitudes.iterator();
         while (iterator.hasNext()){
             SectionAltitude sectionAltitude = iterator.next();

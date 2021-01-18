@@ -18,12 +18,12 @@ import static ru.vova777.coordinateParachuteNotControl.TrackParachuteNotControl.
 import static ru.vova777.coordinateParachuteNotControl.TrackParachuteNotControl.getFinishTrackY;
 
 public class TrackParControlNotWind {
-    int x0;
-    int y0;
-    int lengthTrack;
-    int azimuth;
+    double x0;
+    double y0;
+    double lengthTrack;
+    double azimuth;
 
-    public TrackParControlNotWind(int x0, int y0, int azimuth) {
+    public TrackParControlNotWind(double x0, double y0, double azimuth) {
         this.x0 = x0;
         this.y0 = y0;
         this.azimuth = azimuth;
@@ -45,20 +45,20 @@ public class TrackParControlNotWind {
 //        return cq.getFinishSectionX(y0, length, azimuth);
 //    }
 //
-    private double getLengthTrack(int altitude, int speedHorizontal, int speedDown){
+    private double getLengthTrack(double altitude, double speedHorizontal, double speedDown){
         double coefficient = speedHorizontal / speedDown;
         return  ((altitude - 500) * coefficient);
     }
 
-    public int getFinish_X(CoordinateQuarter ccq, int altitude, int speedHorizontal, int speedDown){
+    public double getFinish_X(CoordinateQuarter ccq, double altitude, double speedHorizontal, double speedDown){
         ccq = CoordinateQuarter.getNeedfulCoordinateQuarter(azimuth);
-        lengthTrack = (int) getLengthTrack(altitude, speedHorizontal, speedDown);
+        lengthTrack = getLengthTrack(altitude, speedHorizontal, speedDown);
         return ccq.getFinishSectionX (x0, lengthTrack, azimuth);
     }
 
-    public int getFinish_Y(CoordinateQuarter ccq, int altitude, int speedHorizontal, int speedDown){
+    public double getFinish_Y(CoordinateQuarter ccq, double altitude, double speedHorizontal, double speedDown){
         ccq = CoordinateQuarter.getNeedfulCoordinateQuarter(azimuth);
-        lengthTrack = (int) getLengthTrack(altitude, speedHorizontal, speedDown);
+        lengthTrack = getLengthTrack(altitude, speedHorizontal, speedDown);
         return ccq.getFinishSectionY (y0, lengthTrack, azimuth);
     }
 
@@ -67,8 +67,8 @@ public class TrackParControlNotWind {
         DataReceiverAuto receiverAuto = new CreatorSectionsAltitudeFromFile();
         CollectorParametersJump jump = new CollectorParametersJump(receiverAuto, receiverManual);
         Queue<SectionAltitude> sectionAltitudes = jump.choiceSourceSectionsAltitude();
-        int trackNotWindX0 = TrackParachuteNotControl.getFinishTrackX(jump.x0, sectionAltitudes);
-        int trackNotWindY0 = TrackParachuteNotControl.getFinishTrackY(jump.y0, sectionAltitudes);
+        double trackNotWindX0 = TrackParachuteNotControl.getFinishTrackX(jump.x0, sectionAltitudes);
+        double trackNotWindY0 = TrackParachuteNotControl.getFinishTrackY(jump.y0, sectionAltitudes);
         double coefficient = (double) jump.speedHorizontal / jump.speedDown;
         CoordinateQuarter cq;
        // TrackParControlWithoutWind trParNotWind = new TrackParControlWithoutWind(trackNotWindX0, trackNotWindY0);

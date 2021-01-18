@@ -11,26 +11,26 @@ public class CalculatorParametersTrackResult {
     CalculatorParametersTrackResult(CoordinateQuarter ccq){
     }
 
-    public int getLengthTrackResult (int x0, int y0, int finish_x, int finish_y){
+    public double getLengthTrackResult (double x0, double y0, double finish_x, double finish_y){
         ccq = CoordinateQuarter.getNeedfulCoordinateQuarter(x0, y0, finish_x, finish_y);
-        int delta_x = ccq.getDelta_x(x0, finish_x);
-        int delta_y = ccq.getDelta_y(y0, finish_y);
+        double delta_x = ccq.getDelta_x(x0, finish_x);
+        double delta_y = ccq.getDelta_y(y0, finish_y);
         return ccq.getLength(delta_x, delta_y);
     }
 
-    public double getAzimuthTrackResult (int x0, int y0, int finish_x,
-                                      int finish_y, int lengthTrack) {
-        int delta_x = ccq.getDelta_x(x0, finish_x);
-        int delta_y = ccq.getDelta_y(y0, finish_y);
+    public double getAzimuthTrackResult (double x0, double y0, double finish_x,
+                                         double finish_y, double lengthTrack) {
+        double delta_x = ccq.getDelta_x(x0, finish_x);
+        double delta_y = ccq.getDelta_y(y0, finish_y);
         ccq = CoordinateQuarter.getNeedfulCoordinateQuarter(x0, y0, finish_x, finish_y);
         return ccq.getAzimuth(delta_x, lengthTrack);
     }
 
-    public int getFinishX(TrackParControlNotWind trackNotWind, int altitude, int speedHorizontal, int speedDown){
+    public double getFinishX(TrackParControlNotWind trackNotWind, double altitude, double speedHorizontal, double speedDown){
         return trackNotWind.getFinish_X(ccq, altitude, speedHorizontal, speedDown);
     }
 
-    public int getFinishY(TrackParControlNotWind trackNotWind, int altitude, int speedHorizontal, int speedDown){
+    public double getFinishY(TrackParControlNotWind trackNotWind, double altitude, double speedHorizontal, double speedDown){
         return trackNotWind.getFinish_Y(ccq, altitude, speedHorizontal, speedDown);
     }
 }

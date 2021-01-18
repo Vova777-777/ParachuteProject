@@ -27,15 +27,15 @@ public class CreatorAnswer implements CheckAbleIsDigit {
     }
 
     private static class CollectorParametersAnswer{//???????????????????????????
-        int x0;
-        int y0;
-        int finishX;
-        int finishY;
-        int length;
-        int azimuthTrackNotWind;
+        double x0;
+        double y0;
+        double finishX;
+        double finishY;
+        double length;
+        double azimuthTrackNotWind;
 
-        public CollectorParametersAnswer(int x0, int y0, int finishX, int finishY, int length,
-                                         int azimuthTrackNotWind) {
+        public CollectorParametersAnswer(double x0, double y0, double finishX, double finishY, double length,
+                                         double azimuthTrackNotWind) {
             this.x0 = x0;
             this.y0 = y0;
             this.finishX = finishX;
@@ -58,16 +58,17 @@ public class CreatorAnswer implements CheckAbleIsDigit {
     }
 
     public Map<Double, CollectorParametersAnswer> createAllAnswers(CoordinateQuarter ccq,
-                                                                    int trackParNotWind_x0,
-                                                                    int trackParNotWind_y0, int altitude) {
+                                                                   double trackParNotWind_x0,
+                                                                   double trackParNotWind_y0, double altitude) {
         Map<Double, CollectorParametersAnswer> map = new TreeMap<>();
-       for (int i = 0; i < 360; i++){
+       for (int i = 180; i < 360; i++){
            TrackParControlNotWind trackParControl = new TrackParControlNotWind(trackParNotWind_x0, trackParNotWind_y0, i);
            CalculatorParametersTrackResult calculator = new CalculatorParametersTrackResult(ccq);
-           int finishX = calculator.getFinishX(trackParControl, altitude, jump.speedHorizontal, jump.speedDown);
-           int finishY = calculator.getFinishY(trackParControl, altitude, jump.speedHorizontal, jump.speedDown);
-           int length = calculator.getLengthTrackResult(jump.x0, jump.y0, finishX, finishY);
+           double finishX = calculator.getFinishX(trackParControl, altitude, jump.speedHorizontal, jump.speedDown);
+           double finishY = calculator.getFinishY(trackParControl, altitude, jump.speedHorizontal, jump.speedDown);
+           double length = calculator.getLengthTrackResult(jump.x0, jump.y0, finishX, finishY);
            Double azimuthTrackResult = calculator.getAzimuthTrackResult(jump.x0, jump.y0, finishX, finishY, length);
+           System.out.println(azimuthTrackResult);//!!!!!!!!!!!!!!!!!
 
            CollectorParametersAnswer collector = new CollectorParametersAnswer(jump.x0, jump.y0, finishX, finishY, length, i);
            map.put(azimuthTrackResult, collector);
@@ -120,8 +121,8 @@ public class CreatorAnswer implements CheckAbleIsDigit {
         sectionAltitudes.add(sA2);
         sectionAltitudes.add(sA3);
         CollectorParametersJump jump = new CollectorParametersJump(100, 200, 5, 10);
-        int trackNotWindX0 = TrackParachuteNotControl.getFinishTrackX(jump.x0, sectionAltitudes);
-        int trackNotWindY0 = TrackParachuteNotControl.getFinishTrackY(jump.y0, sectionAltitudes);
+        double trackNotWindX0 = TrackParachuteNotControl.getFinishTrackX(jump.x0, sectionAltitudes);
+        double trackNotWindY0 = TrackParachuteNotControl.getFinishTrackY(jump.y0, sectionAltitudes);
         CoordinateQuarter ccq = new FirstCoordinateQuarter();
         CreatorAnswer answer = new CreatorAnswer(jump);
         Map<Double, CollectorParametersAnswer> map = answer.createAllAnswers(ccq, trackNotWindX0,
