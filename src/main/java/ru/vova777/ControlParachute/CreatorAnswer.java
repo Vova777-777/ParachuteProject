@@ -32,16 +32,16 @@ public class CreatorAnswer implements CheckAbleIsDigit {
         double finishX;
         double finishY;
         double length;
-        double azimuthTrackNotWind;
+        double azimuthTrackResult;
 
         public CollectorParametersAnswer(double x0, double y0, double finishX, double finishY, double length,
-                                         double azimuthTrackNotWind) {
+                                         double azimuthTrackResult) {
             this.x0 = x0;
             this.y0 = y0;
             this.finishX = finishX;
             this.finishY = finishY;
             this.length = length;
-            this.azimuthTrackNotWind = azimuthTrackNotWind;
+            this.azimuthTrackResult = azimuthTrackResult;
         }
 
         @Override
@@ -52,7 +52,7 @@ public class CreatorAnswer implements CheckAbleIsDigit {
                     ", finishX=" + finishX +
                     ", finishY=" + finishY +
                     ", length=" + length +
-                    ", azimuthTrackNotWind=" + azimuthTrackNotWind +
+                    ", azimuthTrackResult=" + azimuthTrackResult +
                     '}';
         }
     }
@@ -61,17 +61,20 @@ public class CreatorAnswer implements CheckAbleIsDigit {
                                                                    double trackParNotWind_x0,
                                                                    double trackParNotWind_y0, double altitude) {
         Map<Double, CollectorParametersAnswer> map = new TreeMap<>();
-       for (int i = 180; i < 360; i++){
+        //i = Азимут, котрый надо выдерживать на парашютной системе;
+       for (double i = 0; i < 360; i++){
            TrackParControlNotWind trackParControl = new TrackParControlNotWind(trackParNotWind_x0, trackParNotWind_y0, i);
            CalculatorParametersTrackResult calculator = new CalculatorParametersTrackResult(ccq);
            double finishX = calculator.getFinishX(trackParControl, altitude, jump.speedHorizontal, jump.speedDown);
            double finishY = calculator.getFinishY(trackParControl, altitude, jump.speedHorizontal, jump.speedDown);
            double length = calculator.getLengthTrackResult(jump.x0, jump.y0, finishX, finishY);
-           Double azimuthTrackResult = calculator.getAzimuthTrackResult(jump.x0, jump.y0, finishX, finishY, length);
-           System.out.println(azimuthTrackResult);//!!!!!!!!!!!!!!!!!
+           double azimuthTrackResult = calculator.getAzimuthTrackResult(jump.x0, jump.y0, finishX, finishY, length);
+//           System.out.println(finishX);//!!!!!!!!!!!!!!!!!
+//           System.out.println(length);//!!!!!!!!!!!!!!!!!
+//           System.out.println(azimuthTrackResult);//!!!!!!!!!!!!!!!!!
 
-           CollectorParametersAnswer collector = new CollectorParametersAnswer(jump.x0, jump.y0, finishX, finishY, length, i);
-           map.put(azimuthTrackResult, collector);
+           CollectorParametersAnswer collector = new CollectorParametersAnswer(jump.x0, jump.y0, finishX, finishY, length, azimuthTrackResult);//поменял азимуты
+           map.put( i, collector);
 
        }
        return map;
@@ -94,44 +97,49 @@ public class CreatorAnswer implements CheckAbleIsDigit {
     }
 
     public static void main(String[] args) throws IOException, URISyntaxException {
-//        DataReceiverManual receiverManual = new CreatorSectionsAltitudeFromUserConsole();
-//        DataReceiverAuto receiverAuto = new CreatorSectionsAltitudeFromFile();
-//        CollectorParametersJump jump = new CollectorParametersJump(receiverAuto, receiverManual);
-//        Queue<SectionAltitude> sectionAltitudes = jump.choiceSourceSectionsAltitude();
-//        int trackNotWindX0 = TrackParachuteNotControl.getFinishTrackX(jump.x0, sectionAltitudes);
-//        int trackNotWindY0 = TrackParachuteNotControl.getFinishTrackY(jump.y0, sectionAltitudes);
-//        double coefficient = (double) jump.speedHorizontal / jump.speedDown;
-//        CoordinateQuarter ccq = CoordinateQuarter.getNeedfulCoordinateQuarter(20);//!!!!!!!!!!!!!!!!!!!
-//        CreatorAnswer creator = new CreatorAnswer(jump);
-//        Map<Integer, CollectorParametersAnswer> map = creator.createAllAnswers(ccq, /*jump.x0, jump.y0,*/ trackNotWindX0,
-//                trackNotWindY0, jump.altitude /*jump.speedHorizontal, jump.speedDown*/);
-//        creator.talker(map);
-
-        SectionAltitude sA1 = new SectionAltitude(100);
-        sA1.setAzimuthWind(12);
-        sA1.setWindStrength(0);
-        SectionAltitude sA2 = new SectionAltitude(100);
-        sA2.setAzimuthWind(90);
-        sA2.setWindStrength(0);
-        SectionAltitude sA3 = new SectionAltitude(100);
-        sA3.setAzimuthWind(135);
-        sA3.setWindStrength(0);
-        Queue<SectionAltitude> sectionAltitudes = new ArrayDeque<>();
-        sectionAltitudes.add(sA1);
-        sectionAltitudes.add(sA2);
-        sectionAltitudes.add(sA3);
-        CollectorParametersJump jump = new CollectorParametersJump(100, 200, 5, 10);
+        DataReceiverManual receiverManual = new CreatorSectionsAltitudeFromUserConsole();
+        DataReceiverAuto receiverAuto = new CreatorSectionsAltitudeFromFile();
+        CollectorParametersJump jump = new CollectorParametersJump(receiverAuto, receiverManual);
+        Queue<SectionAltitude> sectionAltitudes = jump.choiceSourceSectionsAltitude();
         double trackNotWindX0 = TrackParachuteNotControl.getFinishTrackX(jump.x0, sectionAltitudes);
         double trackNotWindY0 = TrackParachuteNotControl.getFinishTrackY(jump.y0, sectionAltitudes);
-        CoordinateQuarter ccq = new FirstCoordinateQuarter();
-        CreatorAnswer answer = new CreatorAnswer(jump);
-        Map<Double, CollectorParametersAnswer> map = answer.createAllAnswers(ccq, trackNotWindX0,
-                trackNotWindY0, 1500);
+        double coefficient = (double) jump.speedHorizontal / jump.speedDown;
+        CoordinateQuarter ccq = CoordinateQuarter.getNeedfulCoordinateQuarter(20);//!!!!!!!!!!!!!!!!!!!
+        CreatorAnswer creator = new CreatorAnswer(jump);
+        Map<Double, CollectorParametersAnswer> map = creator.createAllAnswers(ccq, /*jump.x0, jump.y0,*/ trackNotWindX0,
+                trackNotWindY0, jump.altitude /*jump.speedHorizontal, jump.speedDown*/);
+        //creator.talker(map);
+
         int i = 0;
         for (Map.Entry<Double, CollectorParametersAnswer> a : map.entrySet()) {
             System.out.println(i + ") "+ a);
-            i++;
-        }
+            i++;}
+
+//        SectionAltitude sA1 = new SectionAltitude(100);
+//        sA1.setAzimuthWind(12);
+//        sA1.setWindStrength(0);
+//        SectionAltitude sA2 = new SectionAltitude(100);
+//        sA2.setAzimuthWind(90);
+//        sA2.setWindStrength(0);
+//        SectionAltitude sA3 = new SectionAltitude(100);
+//        sA3.setAzimuthWind(135);
+//        sA3.setWindStrength(0);
+//        Queue<SectionAltitude> sectionAltitudes = new ArrayDeque<>();
+//        sectionAltitudes.add(sA1);
+//        sectionAltitudes.add(sA2);
+//        sectionAltitudes.add(sA3);
+//        CollectorParametersJump jump = new CollectorParametersJump(100, 200, 5, 10);
+//        double trackNotWindX0 = TrackParachuteNotControl.getFinishTrackX(jump.x0, sectionAltitudes);
+//        double trackNotWindY0 = TrackParachuteNotControl.getFinishTrackY(jump.y0, sectionAltitudes);
+//        CoordinateQuarter ccq = new FirstCoordinateQuarter();
+//        CreatorAnswer answer = new CreatorAnswer(jump);
+//        Map<Integer, CollectorParametersAnswer> map = answer.createAllAnswers(ccq, trackNotWindX0,
+//                trackNotWindY0, 1500);
+//        int i = 0;
+//        for (Map.Entry<Integer, CollectorParametersAnswer> a : map.entrySet()) {
+//            System.out.println(i + ") "+ a);
+//            i++;
+//        }
 
     }
 }

@@ -19,7 +19,7 @@ public class ThirdCoordinateQuarter extends CoordinateQuarter {
 
     @Override
     public double getAzimuth(double delta_x, double lengthTrack) {
-        double angle = Math.toDegrees(Math.asin((double) delta_x / lengthTrack));
+        double angle = Math.toDegrees(Math.asin(delta_x / lengthTrack));
         return  (270 - angle);
     }
 

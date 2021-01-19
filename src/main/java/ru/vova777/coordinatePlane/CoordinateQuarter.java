@@ -24,6 +24,6 @@ public abstract class CoordinateQuarter {
     }
 
     public double getLength (double delta_x, double delta_y){
-        return  Math.round(Math.sqrt((delta_x * delta_x) + (delta_y * delta_y)));
+        return  Math.sqrt((delta_x * delta_x) + (delta_y * delta_y));
     }
 }
