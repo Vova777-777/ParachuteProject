@@ -16,12 +16,9 @@ public class RemoverParachuteSystem implements CheckAbleIsDigit {
 
     RemoverParachuteSystem(List<ParachuteSystem> parSys){
         this.parSys = parSys;
-
     }
 
     void removeParachuteSystem() throws IOException, URISyntaxException {
-        //File file = new File(getClass().getClassLoader().getResource("NamesParachuteSystems").getFile());//???????????????????
-        //Path path = Paths.get(String.valueOf(file));
         Path path = ResourceLoader.getPathResource("NamesParachuteSystems");
         //if (parSys.size() == 1) {
             Files.delete(path);
@@ -29,7 +26,6 @@ public class RemoverParachuteSystem implements CheckAbleIsDigit {
        // }
         parSys.remove(getParachuteSystemForRemove());
         for (int i = 0; i < parSys.size(); i++){
-            //System.out.println(parSys);//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             Files.writeString(path,parSys.get(i).name+ "&" + parSys.get(i).speedDown + "&"
                     + parSys.get(i).speedHorizontal + "\n", StandardOpenOption.APPEND);
         }

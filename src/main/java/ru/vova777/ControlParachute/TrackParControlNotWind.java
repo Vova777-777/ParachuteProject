@@ -1,4 +1,4 @@
-package ru.vova777.ControlParachute;
+package ru.vova777.controlParachute;
 
 import ru.vova777.coordinateParachuteNotControl.TrackParachuteNotControl;
 import ru.vova777.coordinatePlane.CoordinateQuarter;
@@ -11,11 +11,7 @@ import ru.vova777.parametersJump.CollectorParametersJump;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.util.List;
 import java.util.Queue;
-
-import static ru.vova777.coordinateParachuteNotControl.TrackParachuteNotControl.getFinishTrackX;
-import static ru.vova777.coordinateParachuteNotControl.TrackParachuteNotControl.getFinishTrackY;
 
 public class TrackParControlNotWind {
     double x0;
