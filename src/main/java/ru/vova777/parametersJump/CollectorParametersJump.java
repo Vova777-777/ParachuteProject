@@ -28,7 +28,6 @@ public class CollectorParametersJump implements CheckAbleIsDigit {
     DataReceiverAuto receiverAuto;
     DataReceiverManual receiverManual;
 
-
     public CollectorParametersJump(DataReceiverAuto receiverAuto,
                                    DataReceiverManual receiverManual) throws IOException, URISyntaxException {
         this.x0 = coordinateJump.getX();

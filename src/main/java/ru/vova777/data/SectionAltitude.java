@@ -8,7 +8,7 @@ public class SectionAltitude {
     int azimuthWind;
     int time;
 
-    public SectionAltitude(int time) throws IOException {
+    public SectionAltitude(int time)  {
         this.time = time;
     }
 
