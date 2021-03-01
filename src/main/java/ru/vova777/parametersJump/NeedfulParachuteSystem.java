@@ -56,7 +56,6 @@ public class NeedfulParachuteSystem implements CheckAbleIsDigit {
         List<String> list = ResourceLoader.getInfoFromResource("NamesParachuteSystems");
         if (!list.isEmpty()){
             for (int i = 0; i < list.size(); i ++){
-               // System.out.println(list.get(i));
                 parachuteSystems.add(changeStringToParachuteSystem(list.get(i)));
             }
         }

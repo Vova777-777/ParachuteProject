@@ -15,7 +15,7 @@ public class CreatorParachuteSystem implements CheckAbleIsDigit {
     BufferedReader readerConsole = new BufferedReader(new InputStreamReader(System.in));
 
     void createParachuteSystem () throws IOException, URISyntaxException {
-        ParachuteSystem parachuteSystem = new ParachuteSystem(getName(), getSpeedDown(),getSpeedHorizontal());
+        ParachuteSystem parachuteSystem = new ParachuteSystem(getName(), getSpeedDown(), getSpeedHorizontal());
         ResourceLoader.getInfoFromResource("NamesParachuteSystems");
         String strInFile = parachuteSystem.name + "&" + parachuteSystem.speedDown + "&" + parachuteSystem.speedHorizontal + "\n";
         Path path = ResourceLoader.getPathResource("NamesParachuteSystems");

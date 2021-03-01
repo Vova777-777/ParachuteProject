@@ -25,22 +25,7 @@ public class TrackParControlNotWind {
         this.azimuth = azimuth;
     }
 
-//    List<ParachuteControl> getAllTracksParControlNotWind (){
-//       return new List<ParachuteControl>();
-//    }
 
-
-
-//    int getFinishX_OfParControl(int length, int azimuth){
-//        CoordinateQuarter cq = CoordinateQuarter.getNeedfulCoordinateQuarter(azimuth);
-//        return cq.getFinishSectionX(x0, length, azimuth);
-//    }
-//
-//    int getFinishY_OfParControl(int length, int azimuth){
-//        CoordinateQuarter cq = CoordinateQuarter.getNeedfulCoordinateQuarter(azimuth);
-//        return cq.getFinishSectionX(y0, length, azimuth);
-//    }
-//
     private double getLengthTrack(double altitude, double speedHorizontal, double speedDown){
         double coefficient = speedHorizontal / speedDown;
         return  ((altitude - 500) * coefficient);
