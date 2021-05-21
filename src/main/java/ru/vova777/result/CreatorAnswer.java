@@ -9,6 +9,6 @@ import java.util.Map;
 public interface CreatorAnswer {
 
 
-     Map<Double, CollectorParametersAnswer> createAllAnswers(CoordinateQuarter ccq, double trackParNotWind_x0,
+     Map<Double, CollectorParametersAnswer> createAllAnswers(/*CoordinateQuarter ccq, */double trackParNotWind_x0,
                                                              double trackParNotWind_y0, double altitude);
 }

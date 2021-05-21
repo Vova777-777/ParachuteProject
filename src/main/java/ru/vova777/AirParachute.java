@@ -43,9 +43,9 @@ public class AirParachute {
         double trackNotWindX0 = TrackParachuteNotControl.getFinishTrackX(jump.x0, sectionAltitudes);
         double trackNotWindY0 = TrackParachuteNotControl.getFinishTrackY(jump.y0, sectionAltitudes);
         double coefficient = (double) jump.speedHorizontal / jump.speedDown;
-        CoordinateQuarter ccq = CoordinateQuarter.getNeedfulCoordinateQuarter(20);//!!!!!!!!!!!!!!!!!!!
+        //CoordinateQuarter ccq = CoordinateQuarter.getNeedfulCoordinateQuarter(20);//!!!!!!!!!!!!!!!!!!!
         CreatorAnswer creator = new CreatorAnswerOverAzimuthParachute(jump);
-        Map<Double, CollectorParametersAnswer> map = creator.createAllAnswers(ccq, /*jump.x0, jump.y0,*/ trackNotWindX0,
+        Map<Double, CollectorParametersAnswer> map = creator.createAllAnswers(/*ccq, /*jump.x0, jump.y0,*/ trackNotWindX0,
                 trackNotWindY0, jump.altitude /*jump.speedHorizontal, jump.speedDown*/);
         //creator.talker(map);
 
@@ -53,5 +53,7 @@ public class AirParachute {
         for (Map.Entry<Double, CollectorParametersAnswer> a : map.entrySet()) {
             System.out.println(i + ") "+ a);
             i++;}
-    }
+    }//высота секций разная
+     //500 метров
+    //высота рельефа
 }

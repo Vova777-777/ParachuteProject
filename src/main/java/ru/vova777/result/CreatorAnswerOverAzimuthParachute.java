@@ -29,14 +29,14 @@ CollectorParametersJump jump;
 
 
 
-    public Map<Double, CollectorParametersAnswer> createAllAnswers(CoordinateQuarter ccq,
+    public Map<Double, CollectorParametersAnswer> createAllAnswers(/*CoordinateQuarter ccq,*/
                                                                    double trackParNotWind_x0,
                                                                    double trackParNotWind_y0, double altitude) {
         Map<Double, CollectorParametersAnswer> map = new TreeMap<>();
         //i = Азимут, котрый надо выдерживать на парашютной системе;
        for (double i = 0; i < 360; i++){
            TrackParControlNotWind trackParControl = new TrackParControlNotWind(trackParNotWind_x0, trackParNotWind_y0, i);
-           CalculatorParametersTrackResult calculator = new CalculatorParametersTrackResult(ccq);
+           CalculatorParametersTrackResult calculator = new CalculatorParametersTrackResult(/*ccq*/);
            double finishX = calculator.getFinishX(trackParControl, altitude, jump.speedHorizontal, jump.speedDown);
            double finishY = calculator.getFinishY(trackParControl, altitude, jump.speedHorizontal, jump.speedDown);
            double length = calculator.getLengthTrackResult(jump.x0, jump.y0, finishX, finishY);
@@ -76,7 +76,7 @@ CollectorParametersJump jump;
         double coefficient = (double) jump.speedHorizontal / jump.speedDown;
         CoordinateQuarter ccq = CoordinateQuarter.getNeedfulCoordinateQuarter(20);//!!!!!!!!!!!!!!!!!!!
         CreatorAnswer creator = new CreatorAnswerOverAzimuthParachute(jump);
-        Map<Double, CollectorParametersAnswer> map = creator.createAllAnswers(ccq, /*jump.x0, jump.y0,*/ trackNotWindX0,
+        Map<Double, CollectorParametersAnswer> map = creator.createAllAnswers(/*ccq, /*jump.x0, jump.y0,*/ trackNotWindX0,
                 trackNotWindY0, jump.altitude /*jump.speedHorizontal, jump.speedDown*/);
         //creator.talker(map);
 

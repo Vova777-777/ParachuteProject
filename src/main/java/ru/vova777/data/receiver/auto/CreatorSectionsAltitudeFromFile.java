@@ -30,7 +30,7 @@ public class CreatorSectionsAltitudeFromFile implements DataReceiverAuto {
             }
             int time;
             if (i == countSections) time = verticalSizeHighestSection / speedDown;
-            else time = 500 / speedDown;
+            else time = 500 / speedDown;//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             SectionAltitude sectionAltitude = new SectionAltitude(time);
             sectionAltitude.setWindStrength(Integer.parseInt(list.get(2)));
             sectionAltitude.setAzimuthWind(Integer.parseInt(list.get(5)));

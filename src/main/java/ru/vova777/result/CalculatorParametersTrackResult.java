@@ -7,7 +7,7 @@ public class CalculatorParametersTrackResult {
 
     CoordinateQuarter ccq;
 
-    CalculatorParametersTrackResult(CoordinateQuarter ccq){
+    CalculatorParametersTrackResult(/*CoordinateQuarter ccq*/){
     }
 
     public double getLengthTrackResult (double x0, double y0, double finish_x, double finish_y){
